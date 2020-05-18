@@ -40,8 +40,7 @@ const ProfileSchema = new mongoose.Schema({
 
 ProfileSchema.methods.saveUserSocialMediaInfo = function () {
     var profile = this;
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWMxZTA5OWJkMTM0M2U4MWRiY2MxZTciLCJlbWFpbCI6InByb2ZpbGVAdnQuZWR1IiwiYWNjZXNzIjoiYXV0aCIsImlzcyI6IjIwMjAtMDUtMThUMDE6MTA6NDkuMTY3WiIsImlhdCI6MTU4OTc2NDI0OX0.yGUw2Zq-2XNxCFF-E1DlRnju07H1iNtpp6_lmIOMtJE";
-
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWMyYzFlODcwOTg1ZjAwMTZjOTEwNjUiLCJlbWFpbCI6InByb2ZpbGVAdnQuZWR1IiwiYWNjZXNzIjoiYXV0aCIsImlzcyI6IjIwMjAtMDUtMThUMTc6MTI6MDguMDg3WiIsImlhdCI6MTU4OTgyMTkyOH0.VIYeoR1z2-Jph9PCyPnrBp9NkK7X3IgwJ4Xw4UkPc6s";
     return profile.save().then((acg) => { //TDOD: based  on user input should 
         //update currently stored FB,TW, or IG URL before saving a new record
         let scrapeProfile = {
@@ -54,7 +53,7 @@ ProfileSchema.methods.saveUserSocialMediaInfo = function () {
         if(!acg) {
             return Promise.reject("unable to save user profile");
         } else {
-         axios.post('http://localhost:5000/api/v1/scrape/saveSocialMedia', {scrapeProfile}).then(res => {
+         axios.post('https://picnic-scrape.herokuapp.com/api/v1/scrape/saveSocialMedia', {scrapeProfile}).then(res => {
                 if(res.statusCode == 200) {
                     // maybe added a sentFlag and update
                 }
