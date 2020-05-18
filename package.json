@@ -12,5 +12,13 @@
   },
   "author": "Kaleb Dufera",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/kdufera/auth#readme"
+  "homepage": "https://bitbucket.org/kdufera/auth#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.13",
+    "validator": "^13.0.0"
+  }
 }
