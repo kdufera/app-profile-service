@@ -1,29 +1,16 @@
-# README #
+### Info ###
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Profile service used to capture and process user profile.
 
-### What is this repository for? ###
+### Config ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Install MongoDB and start MongoDB locally
+* Install nodemon  `npm i nodemon -g`
+* `cd /auth` or the main directory and run `npm i` to install all required packages.
 
-### How do I get set up? ###
+## Dependency ##
+* Make sure scrape service is up and running 
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Run ###
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* `nodemon .` to run the app
