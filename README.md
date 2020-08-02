@@ -1,6 +1,5 @@
-### Info ###
 
-Profile service used to capture and process user profile.
+This is a Profile service used to capture and process user profile.
 
 ### Config ###
 
