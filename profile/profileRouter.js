@@ -5,19 +5,19 @@ const router = express.Router();
 const _ = require('lodash');
 const {Profile} = require('./profile');
 
-router.post('/saveSocialMedia',function(req, res) {
+router.post('/saveProfile',function(req, res) {
 
-	let body = _.pick(req.body,['socialMediaType','socialMediaUrl','token']); //TODO: Token must be sent via header
+	let body = _.pick(req.body,['imageType','imageUrl','token']); //TODO: Token must be sent via header
 	var profile = new Profile({
-		socialMediaType:body.socialMediaType,
-		socialMediaUrl:body.socialMediaUrl,
+		imageType:body.imageType,
+		imageUrl:body.imageUrl,
 		uploadedDate: new Date()
 	});
 
 	profile.checkForValidToken(body.token).then((validToken) => {
 		if(validToken) {
 			profile.id = validToken._id;
-			profile.saveUserSocialMediaInfo().then((data) => {
+			profile.saveImageInfo().then((data) => {
 				if(data) {
 					res.status(200).send();
 				} else  {

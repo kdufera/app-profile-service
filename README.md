@@ -9,7 +9,7 @@ Profile service used to capture and process user profile.
 * `cd /auth` or the main directory and run `npm i` to install all required packages.
 
 ## Dependency ##
-* Make sure scrape service is up and running 
+* Make sure image service is up and running 
 
 ### Run ###
 

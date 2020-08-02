@@ -16,14 +16,14 @@ const ProfileSchema = new mongoose.Schema({
         trim: true,
         minlength:6
     },
-    socialMediaType: {
+    imageType: {
         type: String,
         required: true,
         minlength: 5,
         maxlength:10
 
     },
-    socialMediaUrl: {
+    imageUrl: {
         type: String,
         required: true,
         minlength:20,
@@ -38,22 +38,21 @@ const ProfileSchema = new mongoose.Schema({
 });
 
 
-ProfileSchema.methods.saveUserSocialMediaInfo = function () {
+ProfileSchema.methods.saveImageInfo = function () {
     var profile = this;
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWMyYzFlODcwOTg1ZjAwMTZjOTEwNjUiLCJlbWFpbCI6InByb2ZpbGVAdnQuZWR1IiwiYWNjZXNzIjoiYXV0aCIsImlzcyI6IjIwMjAtMDUtMThUMTc6MTI6MDguMDg3WiIsImlhdCI6MTU4OTgyMTkyOH0.VIYeoR1z2-Jph9PCyPnrBp9NkK7X3IgwJ4Xw4UkPc6s";
-    return profile.save().then((acg) => { //TDOD: based  on user input should 
-        //update currently stored FB,TW, or IG URL before saving a new record
-        let scrapeProfile = {
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWMxZTA5OWJkMTM0M2U4MWRiY2MxZTciLCJlbWFpbCI6InByb2ZpbGVAdnQuZWR1IiwiYWNjZXNzIjoiYXV0aCIsImlzcyI6IjIwMjAtMDUtMThUMDE6MTA6NDkuMTY3WiIsImlhdCI6MTU4OTc2NDI0OX0.yGUw2Zq-2XNxCFF-E1DlRnju07H1iNtpp6_lmIOMtJE";
+    // TODO: can utilize auth service to issue a new web token. This token is used to authenticate b/w the two services.
+    return profile.save().then((acg) => { 
+        let userProfile = {
             userId: profile.id,
-            socialMediaType: profile.socialMediaType,
-            socialMediaUrl : profile.socialMediaUrl,
+            imageType: profile.imageType,
+            imageUrl : profile.imageUrl,
             token:token
         }
-
         if(!acg) {
             return Promise.reject("unable to save user profile");
         } else {
-         axios.post('https://picnic-scrape.herokuapp.com/api/v1/scrape/saveSocialMedia', {scrapeProfile}).then(res => {
+         axios.post('http://localhost:5000/api/v1/image/saveImage', {userProfile}).then(res => {
                 if(res.statusCode == 200) {
                     // maybe added a sentFlag and update
                 }
@@ -62,8 +61,6 @@ ProfileSchema.methods.saveUserSocialMediaInfo = function () {
         }
     });
 }
-
-
 
 
 ProfileSchema.methods.checkForValidToken = function (token)  {

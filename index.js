@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/api/v1/media', authRouter);  
+app.use('/api/v1/profile', authRouter);  
 
 app.listen(app.get('port'),function(){
     console.log(`Profile server is running. Listening on ${app.get('port')}`);
